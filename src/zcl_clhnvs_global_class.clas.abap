@@ -21,53 +21,62 @@ CLASS zcl_clhnvs_global_class IMPLEMENTATION.
 
 * First Instance
 **********************************************************************
-    connection = NEW #(  ).
 
     TRY.
-        connection->set_attributes( EXPORTING i_carrier_id = 'LH' i_connection_id = '0400' ).
+        connection = NEW #(
+                            i_carrier_id    = 'LH'
+                            i_connection_id = '0400'
+                          ).
 
-*        connection->carrier_id    = 'LH'.
-*        connection->connection_id = '0400'.
+*        connection->set_attributes(
+*          EXPORTING
+*            i_carrier_id    = 'LH'
+*            i_connection_id = '0400'
+*        ).
 
         APPEND connection TO connections.
+
       CATCH cx_abap_invalid_value.
         out->write( `Method call failed` ).
     ENDTRY.
 
-
-* Second Instance
+* Second instance
 **********************************************************************
-    connection = NEW #(  ).
 
     TRY.
-        connection->set_attributes( EXPORTING i_carrier_id = 'AA' i_connection_id = '0017' ).
+        connection = NEW #(
+                            i_carrier_id    = 'AA'
+                            i_connection_id = '0017'
+                          ).
 
-*    connection->carrier_id    = 'AA'  .
-*    connection->connection_id = '0017'.
         APPEND connection TO connections.
+
       CATCH cx_abap_invalid_value.
         out->write( `Method call failed` ).
     ENDTRY.
 
-* Third Instance
+* Third instance
 **********************************************************************
-    connection = NEW #(  ).
 
     TRY.
-        connection->set_attributes( EXPORTING i_carrier_id = 'SQ' i_connection_id = '0001' ).
-
-*        connection->carrier_id    = 'SQ'  .
-*        connection->connection_id = '0001'.
+        connection = NEW #(
+                             i_carrier_id    = 'SQ'
+                             i_connection_id = '0001'
+                          ).
 
         APPEND connection TO connections.
 
       CATCH cx_abap_invalid_value.
         out->write( `Method call failed` ).
     ENDTRY.
+
+* Output
+**********************************************************************
 
     LOOP AT connections INTO connection.
-      connection->conn_counter += 1.
-      out->write( connection->get_output(  ) ).
+
+      out->write( connection->get_output( ) ).
+
     ENDLOOP.
 
   ENDMETHOD.
