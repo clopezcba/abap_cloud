@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_CLHNVSFLIGHT'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_CLHNVSFLIGHT'
+  }
+}
+define service ZUI_CLHNVSFLIGHT_O4 provider contracts odata_v4_ui {
+  expose ZC_CLHNVSFLIGHT;
+}
